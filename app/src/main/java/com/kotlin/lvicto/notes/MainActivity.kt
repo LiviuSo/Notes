@@ -1,13 +1,17 @@
 package com.kotlin.lvicto.notes
 
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 
@@ -21,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         val dummies = arrayListOf("Note 1", "Note 2", "etc")
         recView.layoutManager = LinearLayoutManager(this)
         recView.adapter = NotesAdapter(this, dummies)
+
+        val addNoteBtn = findViewById<FloatingActionButton>(R.id.add)
+        addNoteBtn.setOnClickListener { Toast.makeText(this@MainActivity, "Add note", Toast.LENGTH_SHORT).show() }
     }
 }
 
@@ -32,7 +39,9 @@ class NotesAdapter(private val context: Context, val data: ArrayList<String>) : 
 
     override fun onBindViewHolder(holder: NoteView, position: Int) {
         holder.bindDataToView(data[position], View.OnClickListener {
-            Toast.makeText(context, "Clicked on ${data[position]}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.EXTRA_NOTE_TITLE, data[position])
+            context.startActivity(intent)
         })
     }
 
