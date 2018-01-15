@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding1">
 
-    <TextView
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/description"
-            android:padding="20dp"/>
+            android:orientation="horizontal">
 
-</FrameLayout>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/itemTitle"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Title"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/itemDescription"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Description"/>
+        </LinearLayout>
+
+        <TextView
+                android:layout_width="@dimen/width1"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemType"
+                android:gravity="end|center_vertical"
+                android:textStyle="bold"
+                android:text="Type"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemTags"
+                android:layout_weight="1"
+                android:text="Tags"/>
+
+        <TextView
+                android:layout_width="@dimen/width1"
+                android:gravity="end"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemRemainingTagsCount"
+                android:text="+ 22 more"/>
+
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"/>
+
+</LinearLayout>

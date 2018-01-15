@@ -2,7 +2,6 @@ package com.kotlin.lvicto.notes
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
@@ -11,9 +10,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.kotlin.lvicto.notes.data.Note
+import com.kotlin.lvicto.notes.data.NoteTag
+import com.kotlin.lvicto.notes.data.NoteType
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,16 +23,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recView = findViewById<RecyclerView>(R.id.rec_view)
-        val dummies = arrayListOf("Note 1", "Note 2", "etc")
+        val dummyData = arrayListOf(
+                Note("Over the hills and far away",
+                        null,
+                        "Some interesting stuff from an episode of Ancient Aliens related to Titicaca",
+                        arrayListOf(NoteTag("Ancient Aliens"),
+                                NoteTag("Bolivia")),
+                        "1/1/18",
+                        null,
+                        NoteType.TEXT),
+                Note("Over the hills and far away",
+                        null,
+                        "Some interesting stuff from an episode of Ancient Aliens related to Titicaca",
+                        arrayListOf(NoteTag("Ancient Aliens"),
+                                NoteTag("Bolivia")),
+                        "1/1/18",
+                        null,
+                        NoteType.TEXT)
+        )
         recView.layoutManager = LinearLayoutManager(this)
-        recView.adapter = NotesAdapter(this, dummies)
+        recView.adapter = NotesAdapter(this, dummyData)
 
         val addNoteBtn = findViewById<FloatingActionButton>(R.id.add)
         addNoteBtn.setOnClickListener { Toast.makeText(this@MainActivity, "Add note", Toast.LENGTH_SHORT).show() }
     }
 }
 
-class NotesAdapter(private val context: Context, val data: ArrayList<String>) : RecyclerView.Adapter<NotesAdapter.NoteView>() {
+class NotesAdapter(private val context: Context, val data: ArrayList<Note>) : RecyclerView.Adapter<NotesAdapter.NoteView>() {
 
     override fun getItemCount(): Int {
         return data.size
@@ -40,7 +58,7 @@ class NotesAdapter(private val context: Context, val data: ArrayList<String>) : 
     override fun onBindViewHolder(holder: NoteView, position: Int) {
         holder.bindDataToView(data[position], View.OnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_NOTE_TITLE, data[position])
+            intent.putExtra(DetailActivity.EXTRA_NOTE_TITLE, data[position].title)
             context.startActivity(intent)
         })
     }
@@ -51,10 +69,14 @@ class NotesAdapter(private val context: Context, val data: ArrayList<String>) : 
     }
 
     class NoteView(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindDataToView(data: String, clickListener: View.OnClickListener) {
+        fun bindDataToView(data: Note, clickListener: View.OnClickListener) {
             view.setOnClickListener(clickListener)
-            val textView = view.findViewById<TextView>(R.id.description)
-            textView?.text = data
+
+            view.findViewById<TextView>(R.id.itemTitle)?.text = data.title
+            view.findViewById<TextView>(R.id.itemType)?.text = data.type.getName().toUpperCase()
+            view.findViewById<TextView>(R.id.itemDescription)?.text = data.description
+            view.findViewById<TextView>(R.id.itemTags)?.text = data.tags[0].name
+            view.findViewById<TextView>(R.id.itemRemainingTagsCount)?.text = "+ ${data.tags.size} more"
         }
     }
 }
