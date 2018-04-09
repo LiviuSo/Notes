@@ -4,13 +4,15 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context="com.kotlin.lvicto.notes.MainActivity">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context="com.kotlin.lvicto.notes.view.MainActivity">
 
     <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rec_view"/>
+            android:id="@+id/rec_view"
+            android:layout_marginTop="@dimen/margin1"/>
 
     <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"

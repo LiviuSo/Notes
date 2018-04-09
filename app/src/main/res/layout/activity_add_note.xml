@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <include layout="@layout/toolbar"/>
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/note_content"
+                 android:background="@color/colorPrimaryDark"/>
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:id="@+id/note_description"
+              android:gravity="start|top"
+              android:hint="Description"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:id="@+id/note_tags"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/note_date_created"
+            android:visibility="gone"
+            android:text="1/1/2018"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/note_date_modified"
+            android:visibility="gone"
+            android:text="1/1/2018"/>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.kotlin.lvicto.notes.data
+package com.kotlin.lvicto.notes.model
 
 data class Note(var title: String,
                 var content: Any?,

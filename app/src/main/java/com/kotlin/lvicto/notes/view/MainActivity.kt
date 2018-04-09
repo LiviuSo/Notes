@@ -1,4 +1,4 @@
-package com.kotlin.lvicto.notes
+package com.kotlin.lvicto.notes.view
 
 import android.content.Context
 import android.content.Intent
@@ -7,45 +7,40 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import com.kotlin.lvicto.notes.data.Note
-import com.kotlin.lvicto.notes.data.NoteTag
-import com.kotlin.lvicto.notes.data.NoteType
+import com.kotlin.lvicto.notes.R
+import com.kotlin.lvicto.notes.model.Note
+import com.kotlin.lvicto.notes.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val LOG_TAG = "MainActivity"
+    private val viewModel = MainViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewModel.saveData(this)
+
         val recView = findViewById<RecyclerView>(R.id.rec_view)
-        val dummyData = arrayListOf(
-                Note("Over the hills and far away",
-                        null,
-                        "Some interesting stuff from an episode of Ancient Aliens related to Titicaca",
-                        arrayListOf(NoteTag("Ancient Aliens"),
-                                NoteTag("Bolivia")),
-                        "1/1/18",
-                        null,
-                        NoteType.TEXT),
-                Note("Over the hills and far away",
-                        null,
-                        "Some interesting stuff from an episode of Ancient Aliens related to Titicaca",
-                        arrayListOf(NoteTag("Ancient Aliens"),
-                                NoteTag("Bolivia")),
-                        "1/1/18",
-                        null,
-                        NoteType.TEXT)
-        )
+//        val dummyData = viewModel.notes
+        val dummyData = viewModel.getData(this)
         recView.layoutManager = LinearLayoutManager(this)
         recView.adapter = NotesAdapter(this, dummyData)
 
-        val addNoteBtn = findViewById<FloatingActionButton>(R.id.add)
-        addNoteBtn.setOnClickListener { Toast.makeText(this@MainActivity, "Add note", Toast.LENGTH_SHORT).show() }
+        val addNoteBtn = findViewById<FloatingActionButton?>(R.id.add)
+        addNoteBtn!!.setOnClickListener {
+            val intent = Intent(this, AddNoteActivity::class.java)
+            startActivity(intent)
+        }
+
+        Log.d(LOG_TAG, viewModel.toJson())
+
     }
 }
 

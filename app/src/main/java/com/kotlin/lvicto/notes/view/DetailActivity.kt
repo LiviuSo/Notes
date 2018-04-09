@@ -1,11 +1,11 @@
-package com.kotlin.lvicto.notes
+package com.kotlin.lvicto.notes.view
 
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.widget.TextView
-import kotlinx.android.synthetic.main.toolbar.*
+import com.kotlin.lvicto.notes.R
 
 class DetailActivity : AppCompatActivity() {
 
@@ -18,13 +18,18 @@ class DetailActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         toolbar.title = noteTitle
         setSupportActionBar(toolbar)
-        supportActionBar?.setDefaultDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val text = findViewById<TextView>(R.id.text)
         text.text = noteTitle
     }
 
     companion object {
-        val EXTRA_NOTE_TITLE = "extra_note_title"
+        const val EXTRA_NOTE_TITLE = "extra_note_title"
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
