@@ -1,9 +1,9 @@
 package com.kotlin.lvicto.notes.viewmodel
 
-import android.app.Application
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.kotlin.lvicto.notes.NotesApplication
 import com.kotlin.lvicto.notes.model.Note
 import com.kotlin.lvicto.notes.model.NoteTag
 import com.kotlin.lvicto.notes.model.NoteType
@@ -60,14 +60,13 @@ class MainViewModel {
         saveDataToFile(context, Gson().toJson(getData()))
     }
 
-    fun getData(context: Context): ArrayList<Note> {
+    private fun getData(context: Context): ArrayList<Note> {
         val json = getDataFromFile(context)
         return Gson().fromJson(json, object : TypeToken<ArrayList<Note>>() {}.type)
     }
 
     init {
-//        notes = getData()
-//        notes = getData(Context.app) // todo fix
+        notes = getData(NotesApplication.instance.applicationContext)
     }
 
     fun toJson(): String {

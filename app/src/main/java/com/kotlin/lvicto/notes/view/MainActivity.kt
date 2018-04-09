@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.saveData(this)
 
         val recView = findViewById<RecyclerView>(R.id.rec_view)
-//        val dummyData = viewModel.notes
-        val dummyData = viewModel.getData(this)
+        val dummyData = viewModel.notes
+//        val dummyData = viewModel.getData(this)
         recView.layoutManager = LinearLayoutManager(this)
         recView.adapter = NotesAdapter(this, dummyData)
 
