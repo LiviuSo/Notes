@@ -2,9 +2,11 @@
 TODOs:
 
 * **save notes as json file**
-    * step 1: elaborate the json
-    * step 2: ``code``
-* load notes from a json file
+    * step 1: elaborate the json -> **done**
+    * step 2: ``code`` -> **done**
+* load notes from a json file -> **done**
+* implement Google Android architecture (ViewModel, LiveData, LifecycleObserver)
+    * include libraries  -> **done**
 * load notes from the json file into a Room
 * implement Google Android architecture (ViewModel, LiveData, LifecycleObserver)
 * upload/download notes json on GoogleDrive
