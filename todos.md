@@ -6,7 +6,11 @@ TODOs:
     * step 2: ``code`` -> **done**
 * load notes from a json file -> **done**
 * implement Google Android architecture (ViewModel, LiveData, LifecycleObserver)
-    * include libraries  -> **done**
+    * for MainActivity (notes screen)
+        * include libraries  -> **done**
+        * create ViewModels, DataModel (Florentina Muntenescu) -> **done**
+        * LifecycleObservers 
+        * add test for model and viewmodel
 * load notes from the json file into a Room
 * implement Google Android architecture (ViewModel, LiveData, LifecycleObserver)
 * upload/download notes json on GoogleDrive
