@@ -9,7 +9,7 @@ import io.reactivex.Observable
  */
 class NotesDataModel {
 
-    val json = "[{\"dateCreated\":\"1/1/18\",\"description\":\"Some NICE stuff from an episode of Ancient Aliens related to PUMA-PUMKU\",\"tags\":[{\"name\":\"Ancient Aliens\"},{\"name\":\"Bolivia\"}],\"title\":\"Over the hills and far away\",\"type\":\"TEXT\"},{\"dateCreated\":\"1/1/18\",\"description\":\"Some interesting stuff from an episode of Ancient Aliens related to Titicaca\",\"tags\":[{\"name\":\"Ancient Aliens\"},{\"name\":\"Bolivia\"}],\"title\":\"Over the hills and far away\",\"type\":\"TEXT\"}]"
+    private val json = "[{\"dateCreated\":\"1/1/18\",\"description\":\"Some NICE stuff from an episode of Ancient Aliens related to PUMA-PUMKU\",\"tags\":[{\"name\":\"Ancient Aliens\"},{\"name\":\"Bolivia\"}],\"title\":\"Over the hills and far away\",\"type\":\"TEXT\"},{\"dateCreated\":\"1/1/18\",\"description\":\"Some interesting stuff from an episode of Ancient Aliens related to Titicaca\",\"tags\":[{\"name\":\"Ancient Aliens\"},{\"name\":\"Bolivia\"}],\"title\":\"Over the hills and far away\",\"type\":\"TEXT\"}]"
 
     fun saveDataToFile(context: Context, json: String): Observable<Unit> {
         Log.d(TAG, "Save to file")

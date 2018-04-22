@@ -9,7 +9,7 @@ TODOs:
     * for MainActivity (notes screen)
         * include libraries  -> **done**
         * create ViewModels, DataModel (Florentina Muntenescu) -> **done**
-        * LifecycleObservers 
+        * LifecycleObservers **done**
         * add test for model and viewmodel
 * load notes from the json file into a Room
 * implement Google Android architecture (ViewModel, LiveData, LifecycleObserver)

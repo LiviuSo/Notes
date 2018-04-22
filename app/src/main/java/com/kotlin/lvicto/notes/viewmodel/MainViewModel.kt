@@ -14,7 +14,7 @@ class MainViewModel : ViewModel() {
     private val dataModel = NotesDataModel()
 
     fun saveData(context: Context): Observable<Unit> {
-        return dataModel.saveDataToFile(context, Gson().toJson(notes)) //(NotesApplication.instance.applicationContext)))
+        return dataModel.saveDataToFile(context, Gson().toJson(notes))
     }
 
     fun getData(context: Context): Observable<ArrayList<Note>> {
